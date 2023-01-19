@@ -40,13 +40,26 @@ button {
   border: none;
 }
 
+i{
+  margin-right: 1%;
+}
 
-i {
-  justify-self: flex-end;
+#aa{
+  
 }
 
 .input input {
   border: none;
   font-style: italic;
 }
+
+/* .n-icon{
+  padding-left: 55%;
+  margin-right: 2%;
+}
+
+.fa-arrows-rotate, .fa-ellipsis-vertical {
+  padding-left: 55%;
+  margin-right: 2%;
+} */
 

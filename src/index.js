@@ -13,23 +13,34 @@ const tasks = [{
   completed: false,
   index: 2,
 },
-{
-  description: 'organize closet',
-  completed: false,
-  index: 3,
-},
+
 ];
 
 
-let html = '';
+function createTask() {
+  for (let i = 1; i <= tasks.length; i += 1) {
+    const li = document.createElement('div');
+    li.classList.add('li');
+    li.id = "list-item"
+    let taskToAdd = {};
+    tasks.forEach((task) => {
+      if (task.index === i) {
+        taskToAdd = task;
+      }
+    });
 
-tasks.forEach((task) => {
-  html += `
-        <div class="list">
-            <input type="checkbox" id="${task.index}" class="item">
-            <p class="item-text">${task.description}</p>
-            <i class="fa-light fa-ellipsis-vertical"></i>
-        </div>`;
-});
+li.innerHTML = `
+            <span>
+            <input type="checkbox" id="${taskToAdd.index}">
+            <label for="${taskToAdd.index}"> ${taskToAdd.description}</label>
+            </span>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+        `;
 
-data.innerHTML = html;
+  data.appendChild(li); 
+
+}
+}
+
+window.addEventListener('load', createTask());
+
