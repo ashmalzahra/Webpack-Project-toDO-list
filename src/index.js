@@ -2,18 +2,7 @@ import './style.css';
 
 const data = document.querySelector('.to-do-list');
 
-const tasks = [{
-  description: 'wash the dishes',
-  completed: false,
-  index: 1,
-},
-{
-  description: 'complete To Do list project',
-  completed: false,
-  index: 2,
-},
-
-];
+const tasks = [ ];
 
 function createTask() {
   for (let i = 1; i <= tasks.length; i += 1) {
