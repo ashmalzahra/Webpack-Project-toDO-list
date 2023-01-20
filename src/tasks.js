@@ -3,8 +3,8 @@ export function updateLocalStorageFromHTML(tasks) {
   let i = 1;
   document.querySelectorAll('.task').forEach((HTMLtask) => {
     const object = {};
-    object.description = HTMLtask.querySelector('[type="text"]').value;
     object.index = i;
+    object.description = HTMLtask.querySelector('[type="text"]').value;
     object.completed = HTMLtask.querySelector('[type="checkbox"]').checked;
     newTasks.push(object);
     i += 1;
@@ -23,14 +23,15 @@ export function updateIndexes(tasks) {
 export function addTask(tasks) {
   const addData = document.getElementById('data');
   if (addData.value !== '') {
-    const taskItem = {
+    const inputTaskObj = {
       index: tasks.length + 1,
       description: addData.value,
       completed: false,
     };
-    tasks.push(taskItem);
+    tasks.push(inputTaskObj);
     if (tasks[0].description !== '') { window.localStorage.setItem('tasks', JSON.stringify(tasks)); }
   }
+
   addData.value = null;
 }
 
@@ -38,7 +39,7 @@ export function removeTask(tasks) {
   updateLocalStorageFromHTML(tasks);
 }
 
-export function editTask(htmlTask, Item, tasks) {
-  Item.description = htmlTask.value;
+export function editTask(htmlTask, taskObj, tasks) {
+  taskObj.description = htmlTask.value;
   window.localStorage.setItem('tasks', JSON.stringify(tasks));
 }
