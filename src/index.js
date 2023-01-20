@@ -1,5 +1,7 @@
 import './style.css';
-import { updateIndexes , addTask, removeTask, editTask, } from './tasks';
+import {
+  updateIndexes, addTask, removeTask, editTask,
+} from './tasks';
 
 const data = document.querySelector('.to-do-list');
 
@@ -24,7 +26,7 @@ function createTask() {
       }
     });
 
-      li.innerHTML = `
+    li.innerHTML = `
             <span>
             <input type="checkbox" name="${taskToAdd.index}">
             <input type="text" id="${taskToAdd.index}" value="${taskToAdd.description}">
@@ -33,16 +35,15 @@ function createTask() {
             <i class="fa-solid fa-ellipsis-vertical"></i>
 
         `;
-    
 
     data.appendChild(li);
 
     const removebtn = document.getElementById(`${taskToAdd.index}button`);
-    removebtn.addEventListener('click', () => { li.remove(); removeTask(tasks); updateTasksArray(); });
+    removebtn.addEventListener('click', () => { li.remove(); removeTask(); updateTasksArray(); });
 
     const htmlTask = document.getElementById(`${taskToAdd.index}`);
     htmlTask.addEventListener('keypress', () => {
-      editTask(htmlTask, taskToAdd, tasks);
+      editTask(htmlTask, taskToAdd);
     });
   }
 }
