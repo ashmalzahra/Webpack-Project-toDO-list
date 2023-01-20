@@ -1,15 +1,13 @@
 import './style.css';
-import { updateIndexes , addTask, removeTasks, removeTask, editTask } from './tasks';
+import { updateIndexes , addTask, removeTask, editTask, } from './tasks';
 
 const data = document.querySelector('.to-do-list');
 
 let tasks = [];
-if (tasks !== []) { addTask(tasks); }
-const button = document.querySelector('button');
-button.addEventListener('click', () => {
-  removeTasks(tasks); console.log(tasks);
-  updateIndexes(tasks);
-});
+
+function updateTasksArray() {
+  tasks = JSON.parse(window.localStorage.getItem('tasks'));
+}
 
 function createTask() {
   const list = document.querySelectorAll('.li');
@@ -26,19 +24,22 @@ function createTask() {
       }
     });
 
-    li.innerHTML = `
+      li.innerHTML = `
             <span>
-            <input type="checkbox" id="${taskToAdd.index}">
-            <label for="${taskToAdd.index}"> ${taskToAdd.description}</label>
+            <input type="checkbox" name="${taskToAdd.index}">
+            <input type="text" id="${taskToAdd.index}" value="${taskToAdd.description}">
             <button type="button" id="${taskToAdd.index}button"> remove </button>
             </span>
             <i class="fa-solid fa-ellipsis-vertical"></i>
 
         `;
+    
 
     data.appendChild(li);
+
     const removebtn = document.getElementById(`${taskToAdd.index}button`);
-    removebtn.addEventListener('click', () => { li.remove(); removeTask(taskToAdd, tasks); });
+    removebtn.addEventListener('click', () => { li.remove(); removeTask(tasks); updateTasksArray(); });
+
     const htmlTask = document.getElementById(`${taskToAdd.index}`);
     htmlTask.addEventListener('keypress', () => {
       editTask(htmlTask, taskToAdd, tasks);
@@ -47,14 +48,14 @@ function createTask() {
 }
 
 window.addEventListener('load', () => {
-  console.log(window.localStorage.getItem('tasks'));
-  if (window.localStorage.getItem('tasks') !== null) {
+  if (window.localStorage.getItem('tasks') !== null && JSON.parse(window.localStorage.getItem('tasks')) !== []) {
+    updateIndexes(JSON.parse(window.localStorage.getItem('tasks')));
     tasks = JSON.parse(window.localStorage.getItem('tasks'));
-    createTask(tasks);
+    createTask(JSON.parse(window.localStorage.getItem('tasks')));
   }
 });
 
-const addData = document.getElementById('addTask');
+const addData = document.getElementById('data');
 addData.addEventListener('keypress', (e) => {
   if (e.key === 'Enter' && addData.value !== '') {
     addTask(tasks);

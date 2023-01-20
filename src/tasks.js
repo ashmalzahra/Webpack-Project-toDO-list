@@ -2,33 +2,24 @@
 
 export function updateLocalStorageFromHTML(tasks) {
     const newTasks = [];
+    let i = 1;
     document.querySelectorAll('.task').forEach((HTMLtask) => {
-      const i = 0;
-      newTasks.description = HTMLtask.querySelector('[type="text"]').value;
-      newTasks.index = i;
-      newTasks.completed = HTMLtask.querySelector('[type="checkbox"]').checked;
+        const object = {};
+      object.description = HTMLtask.querySelector('[type="text"]').value;
+      object.index = i;
+      object.completed = HTMLtask.querySelector('[type="checkbox"]').checked;
+      newTasks.push(object);
+      i += 1;
     });
     tasks = newTasks;
     window.localStorage.setItem('tasks', JSON.stringify(tasks));
   }
 
 export function updateIndexes(tasks) {
-    const tasksIndex = [];
-    for (let i = 1; i <= tasks.length; i++) {
-      let min = tasks[0];
-      for (let n = 0; n < tasks.length; n++) {
-        if (min.index >= tasks[n].index) {
-          min = tasks[n];
-        }
-      }
-      min.index = i;
-      tasksIndex.push(min);
-      tasks.splice(tasks.indexOf(min), 1);
-    }
-    tasks = tasksIndex;
-    if (tasksIndex !== []) {
+    tasks.forEach((task) => {
+        task.index = tasks.indexOf(task) + 1;
+      });
       window.localStorage.setItem('tasks', JSON.stringify(tasks));
-    }
   }
 
 export function addTask (tasks){
@@ -42,25 +33,14 @@ if(addData.value !== ''){
     tasks.push(taskItem);
     if (tasks[0].description !== '') { window.localStorage.setItem('tasks', JSON.stringify(tasks)); }
 }
+addData.value = null;
 }
-
-export function removeTasks(tasks) {
-    function completed(object) { return object.completed === false; }
-    tasks = tasks.filter(completed);
-    /* update indexes */
-    updateIndexes(tasks);
-    window.localStorage.setItem('tasks', JSON.stringify(tasks));
-  }
   
-  export function removeTask(task, tasks) {
-    function is(object) { return object === task; }
-    console.log(tasks);
-    tasks.filter(is);
-    console.log(tasks);
+  export function removeTask(tasks) {
     updateLocalStorageFromHTML(tasks);
   }
-  
-  export function editTask(htmlTask, taskItem, tasks) {
-    taskItem.description = htmlTask.value;
+
+  export function editTask(htmlTask, Item, tasks) {
+    Item.description = htmlTask.value;
     window.localStorage.setItem('tasks', JSON.stringify(tasks));
   }
