@@ -59,6 +59,12 @@ Clone this repository to get started with the project, make sure to configure li
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Live Link
+- [Live Link](https://ashmalzahra.github.io/Webpack-Project-list/dist/)
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- AUTHORS -->
 
 ## 👥 Authors <a name="authors"></a>
