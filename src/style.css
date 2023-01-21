@@ -48,3 +48,7 @@ i {
   border: none;
   font-style: italic;
 }
+
+.remove-button {
+  margin-right: 1%;
+}
