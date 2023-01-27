@@ -1,13 +1,13 @@
 module.exports = class Task {
-    constructor(list) {
-      this.localStorageList = list;
-    }
-  
+  constructor(list) {
+    this.localStorageList = list;
+  }
+
     toLocalStorage = () => {
       const stringToDoList = JSON.stringify(this.localStorageList);
       localStorage.setItem('toDoList', stringToDoList);
     };
-  
+
     print = (ulList) => {
       ulList.innerHTML = '';
       this.localStorageList.map((item) => {
@@ -55,7 +55,7 @@ module.exports = class Task {
         return ulList.append(toDo);
       });
     };
-  
+
     update = (ulList) => {
       this.localStorageList.map((item, i) => {
         item.index = i;
@@ -64,7 +64,7 @@ module.exports = class Task {
       this.toLocalStorage();
       this.print(ulList);
     };
-  
+
     addToDo = (task, ulList) => {
       const newTask = {
         description: task,
@@ -74,26 +74,26 @@ module.exports = class Task {
       this.localStorageList.push(newTask);
       this.update(ulList);
     };
-  
+
     remove = (index, ulList) => {
       this.localStorageList.splice(index, 1);
       this.update(ulList);
     };
-  
+
     complete = (index, ulList) => {
       this.localStorageList[index].completed = true;
       this.update(ulList);
     };
-  
+
     edit = (index, ulList) => {
       this.localStorageList[index].description = 'New text';
       this.update(ulList);
     }
-  
+
     clearAllCompleted(ulList) {
       ulList.innerHTML = '';
       const newArray = this.localStorageList.filter((item) => !item.completed);
       this.localStorageList = newArray;
       this.update(ulList);
     }
-  };
+};
