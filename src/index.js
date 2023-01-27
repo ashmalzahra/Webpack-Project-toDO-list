@@ -1,106 +1,45 @@
 import './style.css';
-import TodoList from './modules/tasks';
-import toggleStatus from './modules/clear';
+import ToDoList from './toDoList.js';
 
-let todolist = [];
-if (JSON.parse(localStorage.getItem('todolist'))) {
-  todolist = JSON.parse(localStorage.getItem('todolist')).todolist;
-}
-const newTodoList = new TodoList(todolist);
-const todoItems = document.getElementsByClassName('to-do-list')[0];
+const ToDoListArray = new ToDoList([]);
 
-const sortedTodoList = todolist.sort((a, b) => a.index - b.index);
-
-sortedTodoList.forEach((todo) => {
-  const task = document.createElement('li');
-  // task.classList.add('task');
-  task.id = todo.index;
-  task.innerHTML = `<span class="task"><input type="checkbox" name="${todo.index}" class="check">
-  <label class = "${todo.index} task-desc black" for="${todo.index}">${todo.description}</label>
-  </span>
-  <div class="remove-button">
-    <i class='fa fa-trash ash'></i>
-  <div>`;
-  todoItems.appendChild(task);
-});
-
-const enter = document.querySelector('.enter');
-
-const addTask = (e) => {
-  e.preventDefault();
-  const newItem = document.getElementById('data');
-  if (newItem.value) {
-    const description = newItem.value.trim();
-    const index = todolist.length + 1;
-    newTodoList.addTask(description, index);
-    localStorage.setItem('todolist', JSON.stringify(newTodoList));
-    newItem.value = '';
-  }
-  window.location.reload();
-};
-
-enter.addEventListener('click', addTask);
-
-const editTaskButton = document.querySelectorAll('.task');
-editTaskButton.forEach((elm) => {
-  const element = elm.children[1];
-  element.addEventListener('click', () => {
-    element.contentEditable = true;
-    element.focus();
-  });
-
-  element.addEventListener('focusout', () => {
-    if (element.innerHTML) {
-      newTodoList.editTask(element.innerHTML, element.className);
-      localStorage.setItem('todolist', JSON.stringify(newTodoList));
-      element.contentEditable = false;
+const init = () => {
+  const toDoList = document.getElementById('to-do-list');
+  const toDoHeader = document.createElement('div');
+  toDoHeader.className = 'to-do-header';
+  toDoHeader.innerHTML = `<h4>Today's To Do</h4>
+    <div class="icon-container">
+    <i class="fa-solid fa-arrows-rotate"></i>
+    </div>`;
+  toDoList.append(toDoHeader);
+  const inputToDoContainer = document.createElement('div');
+  const inputToDo = document.createElement('input');
+  inputToDo.id = 'to-do-input';
+  inputToDo.setAttribute('type', 'text');
+  inputToDo.setAttribute('placeholder', 'add to your list...');
+  const clearAllBtn = document.createElement('div');
+  clearAllBtn.classList.add('remove-btn', 'disabled');
+  clearAllBtn.id = 'clear-all';
+  clearAllBtn.innerHTML = 'Clear all completed';
+  const ulList = document.createElement('ul');
+  ulList.id = 'list';
+  inputToDoContainer.id = 'to-do-input-container';
+  inputToDoContainer.innerHTML = `
+  <i class="fa-solid fa-arrow-right-to-bracket ash icon n-icon enter"></i>`;
+  inputToDo.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      ToDoListArray.addToDo(event.currentTarget.value, ulList);
+      event.currentTarget.value = '';
     }
   });
-  element.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter' && element.innerHTML) {
-      newTodoList.editTask(element.innerHTML, element.className);
-      localStorage.setItem('todolist', JSON.stringify(newTodoList));
-      element.contentEditable = false;
-    }
+  clearAllBtn.addEventListener('click', () => {
+    ToDoListArray.clearAllCompleted(ulList);
   });
-});
-
-const removeButton = document.querySelectorAll('.remove-button');
-
-const removeTask = (e) => {
-  const index = e.target.parentNode.parentNode.id;
-  newTodoList.removeTask(index);
-  localStorage.setItem('todolist', JSON.stringify(newTodoList));
-  window.location.reload();
+  inputToDoContainer.prepend(inputToDo);
+  toDoList.append(inputToDo);
+  toDoList.append(ulList);
+  toDoList.append(clearAllBtn);
+  ToDoListArray.print(ulList);
 };
 
-removeButton.forEach((element) => element.addEventListener('click', removeTask));
-
-const checkBox = (e) => {
-  const i = e.target.name;
-  const task = newTodoList.getTaskByIndex(i);
-  toggleStatus(task);
-  newTodoList.todolist[i - 1] = task;
-  localStorage.setItem('todolist', JSON.stringify(newTodoList));
-};
-
-const tasks = document.querySelectorAll('.task');
-tasks.forEach((e) => {
-  const checkInput = e.childNodes[0];
-  checkInput.addEventListener('change', checkBox);
-});
-
-const clearButton = document.getElementById('clear');
-
-const clearCompleted = () => {
-  const filteredList = newTodoList.todolist.filter((e) => e.completed === false);
-  const sortedList = filteredList.map((object, i) => {
-    const index = i + 1;
-    return { ...object, index };
-  });
-  newTodoList.todolist = sortedList;
-  localStorage.setItem('todolist', JSON.stringify(newTodoList));
-  window.location.reload();
-};
-
-clearButton.addEventListener('click', clearCompleted);
+init();
