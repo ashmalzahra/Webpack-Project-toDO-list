@@ -4,9 +4,10 @@
   "description": "<a name=\"readme-top\"></a>",
   "private": true,
   "scripts": {
-    "test": "jest --watch *.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --open",
-    "build": "webpack"
+    "build": "webpack",
+    "watch": "jest --watch *.js"
   },
   "repository": {
     "type": "git",
