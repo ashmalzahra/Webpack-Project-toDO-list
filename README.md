@@ -6,6 +6,7 @@
 
 - [📖 About the Project](#about-project)
   - [🛠 Built With](#built-with)
+   - [🚀 Live Demo ](#-live-demo-)
     - [Key Features](#key-features)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
@@ -19,13 +20,16 @@
 
 # 📖 [Webpack project list] <a name="about-project"></a>
 
-> In this project, a simple HTML list of To Do tasks has been built using webpack and served by a webpack dev server.
+In this project, a simple HTML list of To Do tasks has been built using webpack and served by a webpack dev server.
 
 ## Built With
 
 - HTML, CSS, JavaScript
 - VSCode
 - Webpack
+
+### Live Link
+- [Live Link](https://ashmalzahra.github.io/Webpack-Project-list/dist/)
 
 
 <!-- Features -->
@@ -59,12 +63,6 @@ Clone this repository to get started with the project, make sure to configure li
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Live Link
-- [Live Link](https://ashmalzahra.github.io/Webpack-Project-list/dist/)
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- AUTHORS -->
 
 ## 👥 Authors <a name="authors"></a>
@@ -84,7 +82,7 @@ Clone this repository to get started with the project, make sure to configure li
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/ashmalzahra/Webpack-project-list/issues).
+Feel free to check the [issues page](https://github.com/ashmalzahra/Webpack-project-toDo-list/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
