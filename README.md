@@ -29,7 +29,7 @@ In this project, a simple HTML list of To Do tasks has been built using webpack 
 - Webpack
 
 ### Live Link
-- [Live Link](https://ashmalzahra.github.io/Webpack-Project-list/dist/)
+- [Live Link](https://ashmalzahra.github.io/Webpack-Project-toDO-list/dist/)
 
 
 <!-- Features -->
