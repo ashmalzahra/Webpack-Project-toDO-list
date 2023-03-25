@@ -18,7 +18,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [Webpack project list] <a name="about-project"></a>
+# 📖 Webpack project list <a name="about-project"></a>
 
 In this project, a simple HTML list of To Do tasks has been built using webpack and served by a webpack dev server.
 
