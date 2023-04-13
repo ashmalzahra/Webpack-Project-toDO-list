@@ -118,9 +118,9 @@ To run the project, execute the following command:
 
 👤 **Ashmal Zahra**
 
-- GitHub: [@githubhandle](https://github.com/ashmalzahra)
-- Twitter: [@twitterhandle](https://twitter.com/AshmalZahraa)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ashmal-zahra-35bb09242/)
+- GitHub: [@ashmalzahra](https://github.com/ashmalzahra)
+- Twitter: [@AshmalZahraa](https://twitter.com/AshmalZahraa)
+- LinkedIn: [ashmal-zahra](https://www.linkedin.com/in/ashmal-zahra)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -158,7 +158,7 @@ I would like to thank Microverse for the information provided to build this proj
 
 - **Can I use the project for any purpose?**
 
-  - Yes, you can use this files for anything you need.
+  - Yes, you can.
 
 - **Is the information saved in any database?**
 
